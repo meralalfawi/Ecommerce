@@ -32,7 +32,7 @@ class ApiManager{
       );
       var response = await http.post(url , body: registerBody.toJson());
       var registerResponse = RegisterResponseDto.fromJson(jsonDecode(response.body));
-     if(response.statusCode >= 200 || response.statusCode < 300){
+     if(response.statusCode >= 200 && response.statusCode < 300){
        return Right(registerResponse);
      }
      else{
@@ -59,7 +59,7 @@ class ApiManager{
       if(response.statusCode >= 200 || response.statusCode < 300){
         return Right(loginResponse);
       }
-      else{
+      else {
         return Left(ServerError(errorMessage: loginResponse.message));
       }
     }else{
